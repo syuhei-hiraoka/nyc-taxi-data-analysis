@@ -1,19 +1,19 @@
 import pandas
 
-def print_demand_priority(
+def print_selected_columns(
     df: pandas.DataFrame, 
     target_column: str, 
     columns: list[str]
 ) -> None:
     """
-    需要の比率から優先度を表示する処理。
+    選択した列を表示する処理。
     
     Parameters
     ----------
     df : pandas.DataFrame
         データフレーム。
     target_column : str
-        指定した優先度列を基準にDataFrameを並べ替えて表示する。
+        指定した列を基準にDataFrameを並べ替えて表示する。
     columns : list[str]
         表示する列名のリスト。
     

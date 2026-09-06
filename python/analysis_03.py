@@ -22,7 +22,7 @@ from plot_utils import (
     plot_heatmap,
     plot_line,
 )
-from output_utils import print_demand_priority
+from output_utils import print_selected_columns
 
 LOCATIONS = ["170", "186", "68", "107", "141"]
 HOURS = [17, 18, 19, 20, 21]
@@ -116,7 +116,7 @@ priority_columns = [
     "change_ratio_17_18",
     "strategy",
 ]
-print_demand_priority(df_merged, "demand_priority_score", priority_columns)
+print_selected_columns(df_merged, "demand_priority_score", priority_columns)
 
 df_merged["deployment_start"] = deployment_start_analysis(df_merged, "increase_start", "strategy")
 

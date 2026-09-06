@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 from google.cloud import bigquery
 from analysis_utils import analysis_info
 from plot_utils import plot_scatter
-from output_utils import print_demand_priority
-
+from output_utils import print_selected_columns
 client = bigquery.Client(
     project="nyc-taxi-data-analysis-506307"
 )
@@ -25,7 +24,7 @@ columns = [
     "passenger_demand_norm", 
     "avg_passenger_count_norm",
 ]
-print_demand_priority(
+print_selected_columns(
     df, "demand_priority_score", columns,
 )
 
