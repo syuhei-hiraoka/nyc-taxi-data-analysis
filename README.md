@@ -94,7 +94,7 @@ NYC Taxi Data Analysis/
     ├── 01_basic_analysis.sql       # 需要の多い曜日・時間を抽出
     ├── 02_peak_demand_analysis.sql # ピーク時の需要の多い地域を抽出
     └── 03_time_series_analysis.sql # 地域・曜日・時間別のデータを抽出
-
+```
 
 
 ```mermaid
