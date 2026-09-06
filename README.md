@@ -31,18 +31,39 @@ analysis_03.py
 タクシーの利用回数と一度の利用に対する乗客の需要の相関係数は約-0.126であり、ほぼ相関関係は見られなかった。
 需要は15時～19時に集中しており、ピークを19時に迎え、20時から大幅な減少が確認された。
 需要の多い曜日は、水曜日・金曜日・土曜日で、最大は金曜日だと確認できた。
-金曜日19時のピーク需要・年間トリップ数・需要優先度・17時～18時のトリップ数と需要増加率から「170・186・68・107・141」の5地域を分析対象に絞り車両配置の優先度を予測した。
+金曜日19時のピーク需要・年間トリップ数・需要優先度・17時～18時のトリップ数と需要増加率から「170・186・68・107・141」の5地域を分析対象に絞り車両配置の優先度を評価した。
 
 ## 車両配置戦略
 |地域ID | 17時 | 18時 | 19時 | 20時 | 21時 |
+|---|---|---|---|---|---|
 | 170 | 配置強化 | 配置強化 | ピーク | 減車 | 減車 |
 | 186 | 配置強化 | 配置強化 | ピーク | 減車 | 減車 |
 | 107 | 配置強化 | 配置強化 | ピーク | 減車 | 減車 |
-|  68 | 配置強化 | 配置強化 | ピーク | 減車 | 減車 |
-| 141 | 配置強化 | 配置強化 |  減車  | 減車 | 減車 |
+| 68 | 配置強化 | 配置強化 | ピーク | 減車 | 減車 |
+| 141 | 配置強化 | 配置強化 | 減車 | 減車 | 減車 |
+
+## 分析から得られた知見
+- 170・186：
+  需要が高いため、ピークに向けた車両確保を優先
+
+- 107：
+  ピーク前から需要が増加するため、早めに配置強化
+
+- 68：
+  需要増加を考慮し、状況に応じて配置
+
+- 141：
+  19時から需要が減少するため、19時から減車を検討
+
+- その他：
+  20時以降の需要減少を考慮して減車を検討
 
 ## 使用技術
-### python
+### Language
+- Python
+- SQL
+
+### Libraries
 - pandas
 - Numpy
 - Matplotlib
@@ -50,16 +71,14 @@ analysis_03.py
 ### Data Warehouse
 - Google BigQuery
 
-### Language
-- Python
-- SQL
 
 ## プロジェクト構成
 ```text
 NYC Taxi Data Analysis/
 ├── .gitignore
 ├── README.md
-│
+├── requirements.txt
+|
 ├── python/
 |    ├── analysis_01.py          # 需要の多い曜日・時間を分析
 |    ├── analysis_02.py          # ピーク時の地域別需要を分析
@@ -71,10 +90,12 @@ NYC Taxi Data Analysis/
 |    ├── plot_utils.py           # グラフ描画用の関数
 |    └── strategy_utils.py       # 車両配置戦略の計算用の関数
 |
-└──sql/
+└── sql/
     ├── 01_basic_analysis.sql       # 需要の多い曜日・時間を抽出
     ├── 02_peak_demand_analysis.sql # ピーク時の需要の多い地域を抽出
     └── 03_time_series_analysis.sql # 地域・曜日・時間別のデータを抽出
+
+
 
 ```mermaid
 flowchart TD
@@ -90,28 +111,29 @@ flowchart TD
 
 ## 実行方法
 
-### 1. Google Cloudの認証
 
-Application Default Credentialsを設定します。
-
-```powershell
-gcloud auth application-default login
-```
-
-### 2. リポジトリをクローン
+### 1. リポジトリをクローン
 ```powershell
 git clone https://github.com/syuhei-hiraoka/nyc-taxi-data-analysis.git
 cd nyc-taxi-data-analysis
 ```
-### 3. 仮想環境を作成
+### 2. 仮想環境を作成
 ```powershell
 python -m venv python/.venv
 python/.venv/Scripts/Activate.ps1
 ```
 
-### 4. 必要なライブラリをインストール
+### 3. 必要なライブラリをインストール
 ```powershell
 pip install -r requirements.txt
+```
+
+### 4. Google Cloudの認証
+
+Application Default Credentialsを設定します。
+
+```powershell
+gcloud auth application-default login
 ```
 
 ### 5. Pythonファイルを実行
