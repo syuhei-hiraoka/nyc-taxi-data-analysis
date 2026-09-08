@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from google.cloud import bigquery
-from analysis_utils import analysis_info
+from analysis_utils import normalize_and_score
 from plot_utils import plot_scatter
 from output_utils import print_selected_columns
 client = bigquery.Client(
@@ -14,7 +14,7 @@ normalize_items = [
     ("passenger_demand", "passenger_demand_norm"),
     ("avg_passenger_count", "avg_passenger_count_norm")
 ]
-df = analysis_info(
+df = normalize_and_score(
     client, "sql/02_peak_demand_analysis.sql", normalize_items
 )
 

@@ -6,7 +6,11 @@ from data_utils import (
     normalize_series,
 )
 
-def normalize_and_score(client: google.cloud.bigquery.Client, sql_file: str, normalize_items: list) -> pd.DataFrame:
+def normalize_and_score(
+    client: google.cloud.bigquery.Client,
+    sql_file: str,
+    normalize_items: list
+) -> pd.DataFrame:
     """
     SQLファイルを読み込み、BigQueryクライアントを使用してデータフレームを取得し、正規化とスコア計算を行う関数。
     
